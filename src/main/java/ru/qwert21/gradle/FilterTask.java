@@ -4,7 +4,7 @@ import groovy.lang.Closure;
 import org.gradle.api.file.FileTreeElement;
 import org.gradle.api.file.FileVisitDetails;
 import org.gradle.api.file.FileVisitor;
-import org.gradle.api.internal.AbstractTask;
+import org.gradle.api.DefaultTask;
 import org.gradle.api.specs.Spec;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.InputFile;
@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 
-public class FilterTask extends AbstractTask implements PatternFilterable
+public class FilterTask extends DefaultTask implements PatternFilterable
 {
 	@InputFile
 	private Object inJar;

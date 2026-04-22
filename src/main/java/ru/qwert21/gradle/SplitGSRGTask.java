@@ -1,7 +1,7 @@
 package ru.qwert21.gradle;
 
 import com.google.common.io.Files;
-import org.gradle.api.internal.AbstractTask;
+import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.InputFile;
 import org.gradle.api.tasks.OutputFile;
@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class SplitGSRGTask extends AbstractTask {
+public class SplitGSRGTask extends DefaultTask {
 	private static final Pattern pattern = Pattern.compile("\\s+");
 	@InputFile
 	private Object inGsrg;

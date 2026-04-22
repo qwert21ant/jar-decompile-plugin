@@ -1,7 +1,7 @@
 package ru.qwert21.gradle;
 
 import org.gradle.api.file.FileCollection;
-import org.gradle.api.internal.AbstractTask;
+import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.InputFile;
 import org.gradle.api.tasks.OutputFile;
 import org.gradle.api.tasks.TaskAction;
@@ -24,7 +24,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
-public class DecompileTask extends AbstractTask {
+public class DecompileTask extends DefaultTask {
 	@InputFile
 	Object inJar;
 

@@ -1,6 +1,6 @@
 package ru.qwert21.gradle;
 
-import org.gradle.api.internal.AbstractTask;
+import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.InputFile;
 import org.gradle.api.tasks.OutputFile;
 import org.gradle.api.tasks.TaskAction;
@@ -14,7 +14,7 @@ import java.nio.file.Files;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-public class RestoreSigTask extends AbstractTask {
+public class RestoreSigTask extends DefaultTask {
 	@InputFile
 	private Object inJar;
 
