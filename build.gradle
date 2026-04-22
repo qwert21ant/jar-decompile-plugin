@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.vineflower:vineflower:1.10.0'
+    implementation 'org.vineflower:vineflower:1.11.2'
     implementation 'ru.qwert21.tools:ASMTools:0.1-SNAPSHOT'
     implementation 'net.md-5:SpecialSource:1.7.4'
     implementation 'com.google.guava:guava:21.0'
