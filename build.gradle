@@ -1,0 +1,38 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+group = 'ru.qwert21.gradle'
+version = '0.1-SNAPSHOT'
+
+sourceCompatibility = targetCompatibility = '1.8'
+
+repositories {
+    mavenLocal()
+    maven { url = 'https://maven.minecraftforge.net/' }
+    maven { name = 'sonatype'; url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.vineflower:vineflower:1.10.0'
+    implementation 'ru.qwert21.tools:ASMTools:0.1-SNAPSHOT'
+    implementation 'net.md-5:SpecialSource:1.7.4'
+    implementation 'com.google.guava:guava:21.0'
+}
+
+gradlePlugin {
+    plugins {
+        jarDecompile {
+            id = 'ru.qwert21.jar-decompile'
+            implementationClass = 'ru.qwert21.gradle.JarDecompilePlugin'
+        }
+    }
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+}
