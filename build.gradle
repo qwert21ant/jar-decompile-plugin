@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'ru.qwert21.gradle'
+group = 'ru.qwert21'
 version = '0.1-SNAPSHOT'
 
 sourceCompatibility = targetCompatibility = '1.8'
@@ -36,10 +36,9 @@ gradlePlugin {
 
 publishing {
     repositories {
-        mavenLocal()
         maven {
             name = 'GitHubPackages'
-            url = 'https://maven.pkg.github.com/qwert21ant/jar-decompile-plugin'
+            url = uri('https://maven.pkg.github.com/qwert21ant/jar-decompile-plugin')
             credentials {
                 username = property('gpr.user') ?: System.getenv("USERNAME")
                 password = property('gpr.key') ?: System.getenv("TOKEN")
