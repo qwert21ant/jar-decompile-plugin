@@ -9,17 +9,20 @@ version = '0.1-SNAPSHOT'
 sourceCompatibility = targetCompatibility = '1.8'
 
 repositories {
-    mavenLocal()
-    maven { url = 'https://maven.minecraftforge.net/' }
-    maven { name = 'sonatype'; url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    maven {
+        url = 'https://maven.pkg.github.com/qwert21ant/ASMTools'
+        credentials {
+            username = property('gpr.user') ?: System.getenv("USERNAME")
+            password = property('gpr.key') ?: System.getenv("TOKEN")
+        }
+    }
     mavenCentral()
 }
 
 dependencies {
     implementation 'org.vineflower:vineflower:1.11.2'
-    implementation 'ru.qwert21.tools:ASMTools:0.1-SNAPSHOT'
+    implementation 'ru.qwert21.tools:asm-tools:0.1-SNAPSHOT'
     implementation 'net.md-5:SpecialSource:1.7.4'
-    implementation 'com.google.guava:guava:21.0'
 }
 
 gradlePlugin {
@@ -34,5 +37,13 @@ gradlePlugin {
 publishing {
     repositories {
         mavenLocal()
+        maven {
+            name = 'GitHubPackages'
+            url = 'https://maven.pkg.github.com/qwert21ant/jar-decompile-plugin'
+            credentials {
+                username = property('gpr.user') ?: System.getenv("USERNAME")
+                password = property('gpr.key') ?: System.getenv("TOKEN")
+            }
+        }
     }
 }

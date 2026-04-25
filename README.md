@@ -8,25 +8,40 @@ Gradle plugin providing task types and a DSL for decompiling, deobfuscating, and
 
 ## Installation
 
-Publish to mavenLocal from this project:
-
-```bash
-./gradlew publishToMavenLocal
-```
-
-Then in the consuming project's `buildSrc/build.gradle`:
+In `settings.gradle` of the consuming project:
 
 ```groovy
-repositories {
-    mavenLocal()
-    maven { url = 'https://maven.minecraftforge.net/' }
-    maven { name = 'sonatype'; url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
-}
-
-dependencies {
-    implementation 'ru.qwert21.gradle:jar-decompile-plugin:0.1-SNAPSHOT'
+pluginManagement {
+    repositories {
+        maven {
+            url = 'https://maven.pkg.github.com/qwert21ant/jar-decompile-plugin'
+            credentials {
+                username = property('gpr.user') ?: System.getenv("USERNAME")
+                password = property('gpr.key') ?: System.getenv("TOKEN")
+            }
+        }
+        maven { url = 'https://maven.minecraftforge.net/' }
+        maven { name = 'sonatype'; url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    }
 }
 ```
+
+Then in `build.gradle`:
+
+```groovy
+plugins {
+    id 'ru.qwert21.jar-decompile' version '0.1-SNAPSHOT'
+}
+```
+
+GitHub Packages requires authentication even for public packages. Generate a [personal access token](https://github.com/settings/tokens) with `read:packages` scope and add to `~/.gradle/gradle.properties`:
+
+```properties
+gpr.user=YOUR_GITHUB_USERNAME
+gpr.key=YOUR_TOKEN
+```
+
+Or pass via `USERNAME` / `TOKEN` env vars in CI.
 
 ---
 
