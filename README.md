@@ -16,12 +16,11 @@ pluginManagement {
         maven {
             url = 'https://maven.pkg.github.com/qwert21ant/jar-decompile-plugin'
             credentials {
-                username = property('gpr.user') ?: System.getenv("USERNAME")
-                password = property('gpr.key') ?: System.getenv("TOKEN")
+                username = settings['gpr.user'] ?: System.getenv("USERNAME")
+                password = settings['gpr.key'] ?: System.getenv("TOKEN")
             }
         }
-        maven { url = 'https://maven.minecraftforge.net/' }
-        maven { name = 'sonatype'; url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        mavenCentral()
     }
 }
 ```
