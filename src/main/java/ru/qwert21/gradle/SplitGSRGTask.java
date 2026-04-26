@@ -19,16 +19,12 @@ import java.util.regex.Pattern;
 
 public class SplitGSRGTask extends DefaultTask {
 	private static final Pattern pattern = Pattern.compile("\\s+");
-	@InputFile
 	private Object inGsrg;
 
-	@Input
 	private boolean srgFirst = true;
 
-	@OutputFile
 	private Object outSrg;
 
-	@OutputFile
 	private Object outSig;
 
 	@TaskAction
@@ -103,6 +99,7 @@ public class SplitGSRGTask extends DefaultTask {
 		return result;
 	}
 
+	@InputFile
 	public File getInGsrg() {
 		return getProject().file(inGsrg);
 	}
@@ -111,14 +108,16 @@ public class SplitGSRGTask extends DefaultTask {
 		this.inGsrg = inGsrg;
 	}
 
-	public boolean getIsSrgFirst() {
+	@Input
+	public boolean isSrgFirst() {
 		return srgFirst;
 	}
 
-	public void setIsSrgFirst(boolean srgFirst) {
+	public void setSrgFirst(boolean srgFirst) {
 		this.srgFirst = srgFirst;
 	}
 
+	@OutputFile
 	public File getOutSrg() {
 		return getProject().file(outSrg);
 	}
@@ -127,6 +126,7 @@ public class SplitGSRGTask extends DefaultTask {
 		this.outSrg = outSrg;
 	}
 
+	@OutputFile
 	public File getOutSig() {
 		return getProject().file(outSig);
 	}

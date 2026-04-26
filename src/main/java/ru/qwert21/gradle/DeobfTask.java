@@ -13,13 +13,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class DeobfTask extends DefaultTask {
-	@InputFile
 	private Object inJar;
 
-	@InputFile
 	private Object srg;
 
-	@OutputFile
 	private Object outJar;
 
 	@TaskAction
@@ -40,6 +37,7 @@ public class DeobfTask extends DefaultTask {
 		remapper.remapJar(jar, outJar);
 	}
 
+	@InputFile
 	public File getInJar() {
 		return getProject().file(inJar);
 	}
@@ -48,6 +46,7 @@ public class DeobfTask extends DefaultTask {
 		this.inJar = inJar;
 	}
 
+	@InputFile
 	public File getSrg() {
 		return getProject().file(srg);
 	}
@@ -56,6 +55,7 @@ public class DeobfTask extends DefaultTask {
 		this.srg = srg;
 	}
 
+	@OutputFile
 	public File getOutJar() {
 		return getProject().file(outJar);
 	}

@@ -7,6 +7,7 @@ import org.gradle.api.file.FileVisitor;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.specs.Spec;
 import org.gradle.api.tasks.Input;
+import org.gradle.api.tasks.InputFile;
 import org.gradle.api.tasks.OutputDirectory;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.util.PatternFilterable;
@@ -16,13 +17,10 @@ import java.io.File;
 import java.util.Set;
 
 public class ExtractTask extends DefaultTask implements PatternFilterable {
-	@Input
 	private Object inJar;
 
-	@Input
 	private PatternSet pattern = new PatternSet();
 
-	@OutputDirectory
 	private Object outDir;
 
 	@TaskAction
@@ -32,6 +30,7 @@ public class ExtractTask extends DefaultTask implements PatternFilterable {
 		getProject().zipTree(getInJar()).visit(new ExtractionVisitor());
 	}
 
+	@InputFile
 	public File getInJar() {
 		return getProject().file(inJar);
 	}
@@ -40,6 +39,7 @@ public class ExtractTask extends DefaultTask implements PatternFilterable {
 		this.inJar = inJar;
 	}
 
+	@OutputDirectory
 	public File getOutDir() {
 		return getProject().file(outDir);
 	}
@@ -95,11 +95,13 @@ public class ExtractTask extends DefaultTask implements PatternFilterable {
 		return pattern.exclude(arg0);
 	}
 
+	@Input
 	@Override
 	public Set<String> getExcludes() {
 		return pattern.getExcludes();
 	}
 
+	@Input
 	@Override
 	public Set<String> getIncludes() {
 		return pattern.getIncludes();

@@ -22,13 +22,10 @@ import java.util.jar.JarOutputStream;
 
 public class FilterTask extends DefaultTask implements PatternFilterable
 {
-	@InputFile
 	private Object inJar;
 
-	@Input
 	private PatternSet pattern = new PatternSet();
 
-	@OutputFile
 	private Object outJar;
 
 	@TaskAction
@@ -78,6 +75,7 @@ public class FilterTask extends DefaultTask implements PatternFilterable
 		zout.close();
 	}
 
+	@InputFile
 	public File getInJar() {
 		return getProject().file(inJar);
 	}
@@ -86,6 +84,7 @@ public class FilterTask extends DefaultTask implements PatternFilterable
 		this.inJar = inJar;
 	}
 
+	@OutputFile
 	public File getOutJar() {
 		return getProject().file(outJar);
 	}
@@ -114,11 +113,13 @@ public class FilterTask extends DefaultTask implements PatternFilterable
 		return pattern.exclude(arg0);
 	}
 
+	@Input
 	@Override
 	public Set<String> getExcludes() {
 		return pattern.getExcludes();
 	}
 
+	@Input
 	@Override
 	public Set<String> getIncludes() {
 		return pattern.getIncludes();

@@ -15,13 +15,10 @@ import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 public class RestoreSigTask extends DefaultTask {
-	@InputFile
 	private Object inJar;
 
-	@InputFile
 	private Object sig;
 
-	@OutputFile
 	private Object outJar;
 
 	@TaskAction
@@ -43,6 +40,7 @@ public class RestoreSigTask extends DefaultTask {
 		}
 	}
 
+	@InputFile
 	public File getInJar() {
 		return getProject().file(inJar);
 	}
@@ -51,6 +49,7 @@ public class RestoreSigTask extends DefaultTask {
 		this.inJar = inJar;
 	}
 
+	@InputFile
 	public File getSig() {
 		return getProject().file(sig);
 	}
@@ -59,6 +58,7 @@ public class RestoreSigTask extends DefaultTask {
 		this.sig = sig;
 	}
 
+	@OutputFile
 	public File getOutJar() {
 		return getProject().file(outJar);
 	}

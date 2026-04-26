@@ -2,7 +2,9 @@ package ru.qwert21.gradle;
 
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.DefaultTask;
+import org.gradle.api.tasks.Classpath;
 import org.gradle.api.tasks.InputFile;
+import org.gradle.api.tasks.Optional;
 import org.gradle.api.tasks.OutputFile;
 import org.gradle.api.tasks.TaskAction;
 import org.jetbrains.java.decompiler.main.DecompilerContext;
@@ -25,10 +27,8 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 public class DecompileTask extends DefaultTask {
-	@InputFile
 	Object inJar;
 
-	@OutputFile
 	Object outJar;
 
 	private FileCollection classpath;
@@ -198,6 +198,7 @@ public class DecompileTask extends DefaultTask {
 		}
 	}
 
+	@InputFile
 	public File getInJar() {
 		return getProject().file(inJar);
 	}
@@ -206,6 +207,7 @@ public class DecompileTask extends DefaultTask {
 		this.inJar = inJar;
 	}
 
+	@OutputFile
 	public File getOutJar() {
 		return getProject().file(outJar);
 	}
@@ -214,6 +216,8 @@ public class DecompileTask extends DefaultTask {
 		this.outJar = outJar;
 	}
 
+	@Classpath
+	@Optional
 	public FileCollection getClasspath() {
 		return classpath;
 	}
