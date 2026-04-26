@@ -40,8 +40,8 @@ publishing {
             name = 'GitHubPackages'
             url = uri('https://maven.pkg.github.com/qwert21ant/jar-decompile-plugin')
             credentials {
-                username = property('gpr.user') ?: System.getenv("USERNAME")
-                password = property('gpr.key') ?: System.getenv("TOKEN")
+                username = findProperty('gpr.user') ?: System.getenv("USERNAME")
+                password = findProperty('gpr.key') ?: System.getenv("TOKEN")
             }
         }
     }
